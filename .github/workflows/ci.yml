@@ -16,7 +16,7 @@ jobs:
           python-version: "3.12"
 
       # WeasyPrint's system dependencies (Pango/HarfBuzz) and the Liberation
-      # fonts the bundled themes are designed around — see README "Установка".
+      # fonts the bundled themes are designed around — see README "Installation".
       - name: Install system dependencies
         run: |
           sudo apt-get update
