@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "faktura-printer"
+version = "0.2.0"
+description = "Generate PDF invoices (fakturor) from JSON — usable as a library, CLI or HTTP API"
+readme = "README.md"
+authors = [{ name = "Roman Stepanov", email = "rstepanovs@gmail.com" }]
+requires-python = ">=3.12"
+dependencies = [
+    "weasyprint>=66",
+    "jinja2>=3.1",
+    "pydantic>=2.7",
+]
+
+[project.optional-dependencies]
+# Only needed for the `faktura-printer serve` command / faktura_printer.api.
+api = ["fastapi>=0.110", "uvicorn>=0.29"]
+dev = ["faktura-printer[api]", "pytest>=8", "httpx>=0.27"]
+
+[project.scripts]
+faktura-printer = "faktura_printer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+faktura_printer = ["themes/*", "locales/*.json", "py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

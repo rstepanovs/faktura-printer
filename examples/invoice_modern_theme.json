@@ -1,0 +1,70 @@
+{
+  "locale": "sv",
+  "seller": {
+    "name": "Belt & Braces Software AB",
+    "logo": "../assets/logos/beltandbraces.svg",
+    "address": {
+      "care_of": "Alex Lindqvist",
+      "street": "Exempelvägen 8",
+      "postal_code": "123 45",
+      "city": "Exempelstad"
+    },
+    "phone": "070-000 00 00",
+    "email": "info@beltandbraces.se",
+    "registered_office": "Lund",
+    "bankgiro": "123-4567",
+    "org_number": "556677-8899",
+    "vat_number": "SE556677889901",
+    "f_tax_approved": true
+  },
+  "buyer": {
+    "name": "Nordisk Konsult AB",
+    "address": {
+      "street": "Kundvägen 10",
+      "postal_code": "211 34",
+      "city": "Malmö"
+    }
+  },
+  "invoice": {
+    "number": "1138",
+    "customer_number": "1001",
+    "date": "2026-07-31",
+    "due_date": "2026-09-14",
+    "payment_terms": "45 dagar netto",
+    "late_interest": "8.00 %",
+    "our_reference": "Alex Lindqvist",
+    "your_reference": "",
+    "your_order_number": "",
+    "delivery_terms": "",
+    "delivery_method": ""
+  },
+  "items": [
+    {
+      "article_number": "Cs",
+      "description": "Consultancy services Jul 2026",
+      "quantity": 184,
+      "unit": "timmar",
+      "unit_price": 750.0,
+      "amount": 138000.0
+    },
+    {
+      "article_number": "Csc",
+      "description": "Consultancy services Jun 2026 correction",
+      "quantity": 8,
+      "unit": "timmar",
+      "unit_price": 750.0,
+      "amount": 6000.0
+    }
+  ],
+  "totals": {
+    "net": 144000.0,
+    "excl_vat": 144000.0,
+    "vat_rate": 25,
+    "vat_amount": 36000.0,
+    "total": 180000.0
+  },
+  "notes": "",
+  "design": {
+    "theme": "modern"
+  }
+}

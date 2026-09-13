@@ -1,0 +1,181 @@
+{%- set s = inv.seller -%}
+{%- set b = inv.buyer -%}
+{%- set i = inv.invoice -%}
+{%- set t = inv.totals -%}
+
+{%- macro address_lines(addr) -%}
+  {%- if addr.care_of %}<div>&#8453; {{ addr.care_of }}</div>{% endif -%}
+  {%- if addr.street %}<div class="multiline">{{ addr.street }}</div>{% endif -%}
+  {%- if addr.postal_code or addr.city -%}
+    <div>{{ addr.postal_code }}{% if addr.postal_code and addr.city %}&nbsp;&nbsp;{% endif %}{{ addr.city }}</div>
+  {%- endif -%}
+  {%- if addr.country %}<div>{{ addr.country }}</div>{% endif -%}
+{%- endmacro -%}
+
+{%- macro footer_field(label, value) -%}
+  {%- if value %}<div>{{ label }}</div><div>{{ value }}</div>{% endif -%}
+{%- endmacro -%}
+
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<title>{{ L.title }} {{ i.number }}</title>
+<style>
+{{ css }}
+</style>
+</head>
+<body>
+
+<table class="head">
+  <tr>
+    <td class="logo-cell">
+      {%- if logo_src %}
+      <img class="logo" src="{{ logo_src }}" alt="{{ s.name }}">
+      {%- else %}
+      <div class="seller-name">{{ s.name }}</div>
+      {%- endif %}
+    </td>
+    <td>
+      <h1>{{ L.title }}</h1>
+      <table class="meta">
+        <tr>
+          <th>{{ L.invoice_customer_number }}</th>
+          <th>{{ L.invoice_date }}</th>
+        </tr>
+        <tr>
+          <td>{{ i.number }}{% if i.customer_number %}&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;{{ i.customer_number }}{% endif %}</td>
+          <td>{{ date(i.date) }}</td>
+        </tr>
+      </table>
+      <div class="buyer">
+        <div class="name">{{ b.name }}</div>
+        {{ address_lines(b.address) }}
+      </div>
+    </td>
+  </tr>
+</table>
+
+<table class="refs">
+  <tr>
+    <td class="label-left">{{ L.your_reference }}</td>
+    <td class="value-left">{{ i.your_reference }}</td>
+    <td class="label-right">{{ L.our_reference }}</td>
+    <td>{{ i.our_reference }}</td>
+  </tr>
+  <tr>
+    <td>{{ L.your_order_number }}</td>
+    <td>{{ i.your_order_number }}</td>
+    <td>{{ L.payment_terms }}</td>
+    <td>{{ i.payment_terms }}</td>
+  </tr>
+  <tr>
+    <td>{{ L.delivery_terms }}</td>
+    <td>{{ i.delivery_terms }}</td>
+    <td>{{ L.due_date }}</td>
+    <td>{{ date(i.due_date) }}</td>
+  </tr>
+  <tr>
+    <td>{{ L.delivery_method }}</td>
+    <td>{{ i.delivery_method }}</td>
+    <td>{{ L.late_interest }}</td>
+    <td>{{ i.late_interest }}</td>
+  </tr>
+</table>
+
+<div class="items-frame">
+  <div class="items-body">
+    <table class="items">
+      <colgroup>
+        <col style="width: 20mm">
+        <col>
+        <col style="width: 25mm">
+        <col style="width: 21mm">
+        <col style="width: 28mm">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>{{ L.article_number }}</th>
+          <th>{{ L.description }}</th>
+          <th>{{ L.quantity_unit }}</th>
+          <th class="num">{{ L.unit_price }}</th>
+          <th class="num">{{ L.amount }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%- for item in inv.items %}
+        <tr>
+          <td>{{ item.article_number }}</td>
+          <td class="multiline">{{ item.description }}</td>
+          <td>{{ number(item.quantity) }}{% if item.unit %} {{ item.unit }}{% endif %}</td>
+          <td class="num">{{ money(item.unit_price) }}</td>
+          <td class="num">{{ money(item.amount) }}</td>
+        </tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <table class="totals">
+    <colgroup>
+      <col style="width: 30mm">
+      <col>
+      <col style="width: 26mm">
+      <col style="width: 16mm">
+      <col style="width: 24mm">
+      <col style="width: 28mm">
+    </colgroup>
+    <tr>
+      <th>{{ L.net }}</th>
+      <th></th>
+      <th class="num">{{ L.excl_vat }}</th>
+      <th class="num">{{ L.vat_rate }}</th>
+      <th class="num">{{ L.vat_amount }}</th>
+      <th class="num grand">{{ L.total }}</th>
+    </tr>
+    <tr>
+      <td>{{ money(t.net) }}</td>
+      <td></td>
+      <td class="num">{{ money(t.excl_vat) }}</td>
+      <td class="num">{{ number(t.vat_rate) }}</td>
+      <td class="num">{{ money(t.vat_amount) }}</td>
+      <td class="num grand">{{ money(t.total) }}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="notes">{{ inv.notes }}</div>
+
+<table class="footer">
+  <tr>
+    <td style="width: 38mm">
+      <div>{{ L.address }}</div>
+      {{ address_lines(s.address) }}
+    </td>
+    <td style="width: 31mm">
+      {{ footer_field(L.phone, s.phone) }}
+      {{ footer_field(L.registered_office, s.registered_office) }}
+    </td>
+    <td style="width: 28mm">
+      {{ footer_field(L.bankgiro, s.bankgiro) }}
+      {{ footer_field(L.iban, s.iban) }}
+      {{ footer_field(L.bic, s.bic) }}
+      {{ footer_field(L.org_number, s.org_number) }}
+    </td>
+    <td>
+      {%- if s.email %}
+      <div>{{ L.email }}</div>
+      <div><a href="mailto:{{ s.email }}">{{ s.email }}</a></div>
+      {%- endif %}
+      {%- if s.vat_number %}
+      <div>{{ L.vat_number }} {{ s.vat_number }}</div>
+      {%- endif %}
+      {%- if s.f_tax_approved %}
+      <div>{{ L.f_tax_approved }}</div>
+      {%- endif %}
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

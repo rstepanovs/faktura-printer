@@ -1,0 +1,212 @@
+@page {
+  size: A4;
+  margin: 22mm 20mm 18mm 25mm;
+}
+
+html {
+  font-family: "Liberation Sans", Arial, Helvetica, sans-serif;
+  font-size: 9.5pt;
+  color: #1a1a1a;
+}
+
+body {
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 0;
+  text-align: left;
+  vertical-align: top;
+  font-weight: normal;
+}
+
+.num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.multiline {
+  white-space: pre-line;
+}
+
+/* Header: logo on the left, title, invoice box and buyer on the right */
+.head td.logo-cell {
+  width: 77.5mm;
+}
+
+.logo {
+  display: block;
+  width: 62mm;
+  max-height: 32mm;
+  object-fit: contain;
+  object-position: left top;
+  margin-top: 4mm;
+}
+
+.seller-name {
+  margin-top: 6mm;
+  font-size: 16pt;
+  font-weight: bold;
+  color: #0f6f63;
+}
+
+h1 {
+  margin: 3.5mm 0 3mm;
+  font-size: 13pt;
+  font-weight: bold;
+  color: #0f6f63;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+}
+
+.meta {
+  border: 0.75pt solid #0f6f63;
+}
+
+.meta th {
+  background: #eaf4f2;
+  color: #0f6f63;
+  text-transform: uppercase;
+  font-size: 7.5pt;
+  letter-spacing: 0.3pt;
+}
+
+.meta th,
+.meta td {
+  width: 50%;
+  padding: 1.5mm 1.5mm;
+  border-left: 0.75pt solid #0f6f63;
+}
+
+.buyer {
+  margin-top: 5mm;
+  font-size: 11pt;
+}
+
+.buyer .name {
+  margin-bottom: 4mm;
+  font-weight: bold;
+}
+
+/* Our/your references and terms */
+.refs {
+  margin-top: 13mm;
+}
+
+.refs td {
+  padding-bottom: 2.3mm;
+}
+
+.refs tr:first-child td {
+  padding-bottom: 5mm;
+}
+
+.refs .label-left,
+.refs .label-right {
+  color: #0f6f63;
+  font-size: 8pt;
+  text-transform: uppercase;
+  letter-spacing: 0.3pt;
+}
+
+.refs .label-left {
+  width: 40mm;
+}
+
+.refs .value-left {
+  width: 37.5mm;
+}
+
+.refs .label-right {
+  width: 38mm;
+}
+
+/* Items and totals share one frame */
+.items-frame {
+  margin-top: 12mm;
+  border: 0.75pt solid #0f6f63;
+  border-radius: 1.5mm;
+}
+
+.items-body {
+  min-height: 38mm;
+}
+
+.items th,
+.items td {
+  padding: 2mm 2mm 1.5mm;
+}
+
+.items thead th {
+  background: #0f6f63;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 8pt;
+  letter-spacing: 0.3pt;
+  padding-top: 2.5mm;
+  padding-bottom: 2.5mm;
+}
+
+.items tr {
+  break-inside: avoid;
+}
+
+.totals {
+  break-inside: avoid;
+}
+
+.totals th {
+  color: #0f6f63;
+  text-transform: uppercase;
+  font-size: 8pt;
+  letter-spacing: 0.3pt;
+}
+
+.totals th,
+.totals td {
+  padding: 1mm 2mm;
+}
+
+.totals td {
+  padding-bottom: 1.5mm;
+}
+
+.totals .grand {
+  font-weight: bold;
+  color: #0f6f63;
+}
+
+/* Free-text box */
+.notes {
+  margin-top: 5mm;
+  min-height: 16mm;
+  padding: 2mm 3mm;
+  border: 1pt solid #0f6f63;
+  border-radius: 1.5mm;
+  white-space: pre-line;
+  break-inside: avoid;
+}
+
+/* Seller details */
+.footer {
+  margin-top: 8.5mm;
+  padding-top: 2mm;
+  border-top: 0.75pt solid #0f6f63;
+  font-size: 9pt;
+  line-height: 1.15;
+  break-inside: avoid;
+}
+
+.footer td {
+  padding-left: 2mm;
+}
+
+.footer a {
+  color: #0f6f63;
+}
