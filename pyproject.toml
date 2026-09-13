@@ -8,7 +8,15 @@ version = "0.2.0"
 description = "Generate PDF invoices (fakturor) from JSON — usable as a library, CLI or HTTP API"
 readme = "README.md"
 authors = [{ name = "Roman Stepanov", email = "rstepanovs@gmail.com" }]
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Office/Business :: Financial :: Accounting",
+]
 dependencies = [
     "weasyprint>=66",
     "jinja2>=3.1",

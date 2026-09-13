@@ -16,3 +16,6 @@ dist/
 # The real reference invoice you supplied (real client, address, bank details) —
 # never publish this; examples/invoice_1138.json is the anonymized stand-in.
 /example/
+
+# Claude Code session state, not part of the project
+/.claude/

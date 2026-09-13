@@ -1,5 +1,9 @@
 # faktura-printer
 
+[![CI](https://github.com/rstepanovs/faktura-printer/actions/workflows/ci.yml/badge.svg)](https://github.com/rstepanovs/faktura-printer/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/github/license/rstepanovs/faktura-printer)](LICENSE)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue)](https://www.python.org/)
+
 Генератор счетов (Faktura) в PDF из JSON, повторяющий формат шведской faktura:
 исполнитель, заказчик, логотип, позиции и итоги задаются во входном файле.
 
