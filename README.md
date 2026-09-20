@@ -135,8 +135,10 @@ the invoice will just show an empty cell.
 | `seller.phone`, `email`, `registered_office`, `bankgiro`, `iban`, `bic`, `org_number`, `vat_number` | | footer details |
 | `seller.f_tax_approved` | | `true` → prints "Godkänd för F-skatt" |
 | `buyer.name`, `buyer.address` | ✓ | the recipient |
+| `buyer.org_number`, `buyer.vat_number` | | required on both parties for EU reverse charge |
 | `invoice.number`, `date`, `due_date` | ✓ | dates as `YYYY-MM-DD` |
 | `invoice.customer_number`, `payment_terms`, `late_interest`, `our_reference`, `your_reference`, `your_order_number`, `delivery_terms`, `delivery_method` | | |
+| `invoice.currency` | | ISO 4217 code, e.g. `EUR`; when set, printed after the VAT/total labels instead of the locale's default (Swedish `kr`) |
 | `items[]` | ✓ (≥1) | `article_number`, `description` ✓, `quantity`, `unit`, `unit_price`, `amount` ✓ |
 | `totals` | ✓ | `net`, `excl_vat`, `vat_rate`, `vat_amount`, `total` |
 | `notes` | | free text in a box below the table |

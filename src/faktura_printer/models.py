@@ -53,6 +53,8 @@ class Buyer(StrictModel):
 
     name: str = Field(min_length=1)
     address: Address
+    org_number: str = ""
+    vat_number: str = Field(default="", description="Required on both parties for EU reverse charge")
 
 
 class InvoiceInfo(StrictModel):
@@ -63,6 +65,9 @@ class InvoiceInfo(StrictModel):
 
     number: str = Field(min_length=1)
     customer_number: str = ""
+    currency: str = Field(
+        default="", description="ISO 4217 code, e.g. 'EUR'. When set, printed after the VAT/total labels."
+    )
     date: dt.date
     due_date: dt.date
     payment_terms: str = ""

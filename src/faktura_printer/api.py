@@ -15,7 +15,7 @@ from fastapi.responses import Response
 from .models import Invoice
 from .renderer import InvoiceError, default_filename, render_pdf
 
-app = FastAPI(title="faktura-printer", version="0.2.0")
+app = FastAPI(title="faktura-printer", version="0.3.0")
 
 
 def _assets_dir() -> Path | None:

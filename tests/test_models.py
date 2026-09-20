@@ -27,6 +27,23 @@ def test_numeric_invoice_number_is_coerced_to_string(data):
     assert Invoice.model_validate(data).invoice.number == "1138"
 
 
+def test_currency_and_buyer_identifiers_default_to_empty():
+    invoice = Invoice.model_validate_json(EXAMPLE.read_bytes())
+    assert invoice.invoice.currency == ""
+    assert invoice.buyer.org_number == ""
+    assert invoice.buyer.vat_number == ""
+
+
+def test_currency_and_buyer_identifiers_round_trip(data):
+    data["invoice"]["currency"] = "EUR"
+    data["buyer"]["org_number"] = "12345678"
+    data["buyer"]["vat_number"] = "DE123456789"
+    invoice = Invoice.model_validate(data)
+    assert invoice.invoice.currency == "EUR"
+    assert invoice.buyer.org_number == "12345678"
+    assert invoice.buyer.vat_number == "DE123456789"
+
+
 @pytest.mark.parametrize(
     "mutate",
     [

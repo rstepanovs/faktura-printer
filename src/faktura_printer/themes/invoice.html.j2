@@ -2,6 +2,8 @@
 {%- set b = inv.buyer -%}
 {%- set i = inv.invoice -%}
 {%- set t = inv.totals -%}
+{%- set vat_amount_label = (L.vat_amount_base ~ " " ~ i.currency) if i.currency else L.vat_amount -%}
+{%- set total_label = (L.total_base ~ " " ~ i.currency) if i.currency else L.total -%}
 
 {%- macro address_lines(addr) -%}
   {%- if addr.care_of %}<div>&#8453; {{ addr.care_of }}</div>{% endif -%}
@@ -51,6 +53,8 @@
       <div class="buyer">
         <div class="name">{{ b.name }}</div>
         {{ address_lines(b.address) }}
+        {%- if b.org_number %}<div>{{ L.org_number }} {{ b.org_number }}</div>{% endif -%}
+        {%- if b.vat_number %}<div>{{ L.vat_number }} {{ b.vat_number }}</div>{% endif -%}
       </div>
     </td>
   </tr>
@@ -130,8 +134,8 @@
       <th></th>
       <th class="num">{{ L.excl_vat }}</th>
       <th class="num">{{ L.vat_rate }}</th>
-      <th class="num">{{ L.vat_amount }}</th>
-      <th class="num grand">{{ L.total }}</th>
+      <th class="num">{{ vat_amount_label }}</th>
+      <th class="num grand">{{ total_label }}</th>
     </tr>
     <tr>
       <td>{{ money(t.net) }}</td>

@@ -126,6 +126,36 @@ def test_render_errors(data, change, message):
         render_html(_invoice(data), base_dir=EXAMPLE.parent)
 
 
+def test_currency_empty_keeps_todays_output(data):
+    html = render_html(_invoice(data), base_dir=EXAMPLE.parent)
+    assert "Moms kr" in html
+    assert "ATT BETALA" in html
+
+
+def test_currency_set_replaces_the_default_unit(data):
+    data["invoice"]["currency"] = "EUR"
+    html = render_html(_invoice(data), base_dir=EXAMPLE.parent)
+    assert "Moms EUR" in html
+    assert "ATT BETALA EUR" in html
+    assert "Moms kr" not in html
+
+
+def test_buyer_identifiers_are_printed_when_set(data):
+    data["buyer"]["org_number"] = "12345678"
+    data["buyer"]["vat_number"] = "DE123456789"
+    html = render_html(_invoice(data), base_dir=EXAMPLE.parent)
+    assert "12345678" in html
+    assert "DE123456789" in html
+
+
+def test_buyer_identifiers_are_omitted_when_blank(data):
+    # The example seller already carries org_number/vat_number (printed in the footer);
+    # with the buyer's left blank, each label appears exactly once.
+    html = render_html(_invoice(data), base_dir=EXAMPLE.parent)
+    assert html.count("Organisationsnr") == 1
+    assert html.count("Momsreg.nr") == 1
+
+
 def test_default_filename(data):
     data["invoice"]["number"] = "2026/1138"
     assert default_filename(_invoice(data)) == "faktura_2026_1138.pdf"

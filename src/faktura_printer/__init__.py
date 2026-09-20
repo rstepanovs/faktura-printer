@@ -37,7 +37,7 @@ this same API and are not required to use it as a library.
 from .models import Address, Buyer, Design, Invoice, Item, Seller, Totals
 from .renderer import InvoiceError, available_locales, available_themes, default_filename, render_html, render_pdf
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "__version__",
